@@ -9,7 +9,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 type Data = {
-  reply: string;
+  reply: any;
 };
 
 export default async function handler(
@@ -31,5 +31,5 @@ export default async function handler(
 
   console.log(response.data);
 
-  res.status(200).json({ answer: response.data.choices[0].text });
+  res.status(200).json({ reply: response.data.choices[0].text });
 }

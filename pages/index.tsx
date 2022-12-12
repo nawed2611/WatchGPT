@@ -15,7 +15,7 @@ export default function Home() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setLoading(true);
-    axios.get(`http://localhost:3000/api/hello?query=${query}`)
+    axios.get(`https://watchgpt.vercel.app/api/hello?query=${query}`)
       .then(res => {
         console.log(res.data);
         setData(res.data);
