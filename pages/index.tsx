@@ -42,7 +42,7 @@ export default function Home() {
           }
           {
             data && <ul className='flex flex-col '>
-              <li>{data.answer}</li>
+              <li>{data.reply}</li>
             </ul>
           }
         </div>
