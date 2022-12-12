@@ -9,7 +9,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 type Data = {
-  reply: any;
+  answer: any;
 };
 
 export default async function handler(
@@ -21,7 +21,7 @@ export default async function handler(
 
   const response = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `The user is an avid movie watcher and would like to get some movie recommendations similar to ${query.query}`,
+    prompt: `The user is an avid movie watcher and would like to get list of 5 movie recommendations similar to ${query.query}`,
     temperature: 0.5,
     max_tokens: 60,
     top_p: 0.3,
@@ -29,7 +29,9 @@ export default async function handler(
     presence_penalty: 0.0,
   });
 
-  console.log(response.data);
+  // console.log(response.data);
+  const answer = response.data.choices[0].text?.trim().split("\n");
+  console.log(answer);
 
-  res.status(200).json({ reply: response.data.choices[0].text });
+  res.status(200).json({ answer: answer });
 }
