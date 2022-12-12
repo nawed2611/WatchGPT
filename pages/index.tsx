@@ -9,7 +9,7 @@ export default function Home() {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
-    answer: ''
+    reply: ''
   });
 
   const handleSubmit = (e: any) => {
