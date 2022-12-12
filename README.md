@@ -1,1 +1,2 @@
-## GPT-3 w/ CodeBook
+## WatchGPT w/ OpenAI
+### Dont Just Scroll Netflix!
