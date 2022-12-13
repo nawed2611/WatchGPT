@@ -10,11 +10,12 @@ export default function Home() {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({ answer: [] });
+  const [movieData, setMovieData] = useState({});
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setLoading(true);
-    axios.get(`http://localhost:3000/api/hello?query=${query}`)
+    axios.get(`https://watchgpt.vercel.app/api/hello?query=${query}`)
       .then(res => {
         setData(res.data);
         console.log('lol', data);
@@ -24,30 +25,52 @@ export default function Home() {
         console.log(err);
         setLoading(false);
       })
-  }
 
-  useEffect(() => {
     if (data.answer.length) {
-
       axios.get(`https://www.omdbapi.com/?t=${data.answer[0]}&apiKey=${process.env.NEXT_PUBLIC_OMDB_KEY}`)
         .then(res => {
-          console.log(res.data);
-
+          console.log('1', res.data);
         })
         .catch(err => {
           console.log(err);
-
+        })
+      axios.get(`https://www.omdbapi.com/?t=${data.answer[1]}&apiKey=${process.env.NEXT_PUBLIC_OMDB_KEY}`)
+        .then(res => {
+          console.log('2', res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      axios.get(`https://www.omdbapi.com/?t=${data.answer[2]}&apiKey=${process.env.NEXT_PUBLIC_OMDB_KEY}`)
+        .then(res => {
+          console.log('3', res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      axios.get(`https://www.omdbapi.com/?t=${data.answer[3]}&apiKey=${process.env.NEXT_PUBLIC_OMDB_KEY}`)
+        .then(res => {
+          console.log('4', res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      axios.get(`https://www.omdbapi.com/?t=${data.answer[4]}&apiKey=${process.env.NEXT_PUBLIC_OMDB_KEY}`)
+        .then(res => {
+          console.log('5', res.data);
+        })
+        .catch(err => {
+          console.log(err);
         })
     }
-  }, [data])
-
+  }
   return (
     <Layout className='overflow-hidden antialiased'>
       <div className="flex flex-col h-screen items-center justify-center">
         <Toaster />
         <motion.div
           initial={{ opacity: 0, x: 0, y: 20 }}
-          animate={{opacity: 1, x: 0, y: -40 }}
+          animate={{ opacity: 1, x: 0, y: -40 }}
           transition={{ ease: "easeIn", duration: 0.5 }}
           className="flex flex-col items-center justify-center"
         >
@@ -80,7 +103,7 @@ export default function Home() {
                     </li>
                   )
                 })
-              }              
+              }
             </ul>
           }
         </div>
